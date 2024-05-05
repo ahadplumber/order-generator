@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Form</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .section { margin-top: 20px; border-top: 2px solid #eee; padding-top: 20px; }
+        .image-section { margin-top: 15px; border-top: 1px dashed #ccc; padding-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Customer Order Form</h2>
+        <form id="orderForm">
+            <div class="form-group">
+                <label for="safeId">Safe ID</label>
+                <input type="text" class="form-control" id="safeId" placeholder="Enter Safe ID" required>
+            </div>
+            <div class="form-group">
+                <label for="merchantId">Merchant ID</label>
+                <input type="text" class="form-control" id="merchantId" placeholder="Enter Merchant ID" required>
+            </div>
+            <div class="form-group">
+                <label for="externalId">External ID</label>
+                <input type="text" class="form-control" id="externalId" placeholder="Enter External ID" required>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="testOrder">
+                <label class="form-check-label" for="testOrder">Test Order?</label>
+            </div>
+            <div class="form-group">
+                <label for="orderMetadata">Order Metadata</label>
+                <textarea class="form-control" id="orderMetadata" placeholder="Enter Order Metadata"></textarea>
+            </div>
+
+            <h3>Shipping Address</h3>
+            <div class="form-group">
+                <input type="text" class="form-control" id="shippingFirstName" placeholder="First Name" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="shippingLastName" placeholder="Last Name" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="shippingAddress1" placeholder="Address Line 1" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="shippingAddress2" placeholder="Address Line 2">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="shippingCity" placeholder="City" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="shippingCountry" placeholder="Country" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="shippingState" placeholder="State" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="shippingZip" placeholder="Zip Code" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="shippingEmail" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="shippingPhone" placeholder="Phone" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="shippingMethod" placeholder="Shipping Method" required>
+            </div>
+
+
+            <h3>Billing Address</h3>
+            <div class="form-group">
+                <input type="text" class="form-control" id="billingFirstName" placeholder="First Name" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="billingLastName" placeholder="Last Name" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="billingAddress1" placeholder="Address Line 1" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="billingAddress2" placeholder="Address Line 2">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="billingCity" placeholder="City" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="billingCountry" placeholder="Country" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="billingState" placeholder="State" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="billingZip" placeholder="Zip Code" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="billingEmail" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="billingPhone" placeholder="Phone" required>
+            </div>
+
+            <h3>Items</h3>
+            <div id="itemSection"></div>
+            <button type="button" onclick="addItem()" class="btn btn-primary">Add Item</button>
+
+            <h3>Payment Method and Transaction Details</h3>
+            <div class="form-group">
+                <label for="customerTotalcurrencyCode">Currency Code</label>
+                <input type="text" class="form-control" id="customerTotalcurrencyCode" placeholder="Currency Code">
+            </div>
+            <div class="form-group">
+                <label for="CustomerTotal">Customer Total</label>
+                <input type="number" class="form-control" id="customerTotal" placeholder="Customer Total">
+            </div>
+            <div class="form-group">
+                <label for="customerTotalShipping">Customer Total Shipping</label>
+                <input type="number" class="form-control" id="customerTotalShipping" placeholder="Customer Total Shipping">
+            </div>    
+            <div class="form-group">
+                <label for="customerTotalTaxes">Customer Total Taxes</label>
+                <input type="number" class="form-control" id="customerTotalTaxes" placeholder="Customer Total Taxes">
+            </div>
+            <div class="form-group">
+                <label for="customerTotalDiscountAndPromotions">Discounts & Promos</label>
+                <input type="number" class="form-control" id="customerTotalDiscountAndPromotions" placeholder="Discounts & Promos">
+            </div>  
+            <div class="form-group">
+                <label for="paymentMethod">Payment Method</label>
+                <input type="text" class="form-control" id="paymentMethod" placeholder="Enter Payment Method">
+            </div>
+            <div class="form-group">
+                <label for="cardFirstFour">Card First Four</label>
+                <input type="text" class="form-control" id="cardFirstFour" placeholder="First Four Digits">
+            </div>
+            <div class="form-group">
+                <label for="cardLastFour">Card Last Four</label>
+                <input type="text" class="form-control" id="cardLastFour" placeholder="Last Four Digits">
+            </div>
+            <div class="section">
+                <h4>Transaction Info</h4>
+                <div class="form-group">
+                    <label for="totalPrice">Total Price</label>
+                    <input type="number" class="form-control" id="totalPrice" placeholder="Total Price">
+                </div>
+                <div class="form-group">
+                    <label for="currencyCode">Currency Code</label>
+                    <input type="text" class="form-control" id="currencyCode" placeholder="Currency Code">
+                </div>
+                <div class="form-group">
+                    <label for="transactionDate">Transaction Date</label>
+                    <input type="date" class="form-control" id="transactionDate">
+                </div>
+                <div class="form-group">
+                    <label for="transactionId">Transaction ID</label>
+                    <input type="text" class="form-control" id="transactionId" placeholder="Transaction ID">
+                </div>
+                <div class="form-group">
+                    <label for="authorizationCode">Authorization Code</label>
+                    <input type="text" class="form-control" id="authorizationCode" placeholder="Authorization Code">
+                </div>
+            </div>
+            <div class="section">
+                <h4>Billing Info</h4>
+                <div class="form-group">
+                    <label for="billingFullName">Full Name</label>
+                    <input type="text" class="form-control" id="txnbillingFullName" placeholder="Full Name">
+                </div>
+                <div class="form-group">
+                    <label for="billingLatitude">Latitude</label>
+                    <input type="text" class="form-control" id="txnbillingLatitude" placeholder="Latitude">
+                </div>
+                <div class="form-group">
+                    <label for="billingLongitude">Longitude</label>
+                    <input type="text" class="form-control" id="txnbillingLongitude" placeholder="Longitude">
+                </div>
+                <div class="form-group">
+                    <label for="billingAddress1">Address Line 1</label>
+                    <input type="text" class="form-control" id="txnbillingAddress1" placeholder="Address Line 1">
+                </div>
+                <div class="form-group">
+                    <label for="billingAddress2">Address Line 2</label>
+                    <input type="text" class="form-control" id="txnbillingAddress2" placeholder="Address Line 2">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="txnbillingCity" placeholder="City" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="txnbillingCountry" placeholder="Country" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="txnbillingState" placeholder="State" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="txnbillingZip" placeholder="Zip Code" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="txnbillingEmail" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="txnbillingPhone" placeholder="Phone" required>
+                </div>
+
+
+            <button type="submit" class="btn btn-success mt-3">Submit Order</button>
+        </form>
+    </div>
+
+    <script>
+        let itemId = 0;
+        function addItem() {
+            const itemSection = document.getElementById('itemSection');
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'section';
+            itemDiv.innerHTML = `
+                <div class="form-group">
+                    <label for="sku${itemId}">SKU</label>
+                    <input type="text" class="form-control" id="sku${itemId}" placeholder="Enter SKU" required>
+                </div>
+                <div class="form-group">
+                    <label for="quantity${itemId}">Quantity</label>
+                    <input type="number" class="form-control" id="quantity${itemId}" required>
+                </div>
+                <div class="form-group">
+                    <label for="isSample${itemId}">Is Sample?</label>
+                    <input type="checkbox" class="form-check-input" id="isSample${itemId}">
+                </div>
+                <div class="form-group">
+                    <label for="skipImgManip${itemId}">Is Sample?</label>
+                    <input type="checkbox" class="form-check-input" id="skipImgManip${itemId}">
+                </div>
+                <div class="form-group">
+                    <label for="skipSKUValidation${itemId}">Is Sample?</label>
+                    <input type="checkbox" class="form-check-input" id="skipSKUValidation${itemId}">
+                </div>
+                <div class="form-group">
+                    <label for="externalItemId${itemId}">External Item ID</label>
+                    <input type="text" class="form-control" id="externalItemId${itemId}" placeholder="External Item ID">
+                </div>
+                <div class="form-group">
+                    <label for="itemMetadata${itemId}">Item Metadata</label>
+                    <textarea class="form-control" id="itemMetadata${itemId}" placeholder="Enter Item Metadata"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="clientAttributes${itemId}">Client Attributes</label>
+                    <textarea class="form-control" id="clientAttributes${itemId}" placeholder="Client Attributes">
+                </div>
+                <div class="section">
+                    <h4>Customer Prices</h4>
+                    <div class="form-group">
+                        <label for="customerItemPrice">Customer Price</label>
+                        <input type="number" class="form-control" id="customerItemPrice" placeholder="Enter Item Price">
+                    </div>
+                    <div class="form-group">
+                        <label for="customerItemTaxes">Customer Taxes</label>
+                        <input type="number" class="form-control" id="customerItemTaxes" placeholder="Enter Item Taxes">
+                    </div>
+                    <div class="form-group">
+                        <label for="customerItemShippingPrice">Customer Shipping Price</label>
+                        <input type="number" class="form-control" id="customerItemShippingPrice" placeholder="Enter Item Shipping Price">
+                    </div>
+                    <div class="form-group">
+                        <label for="customerItemDiscountsPromos">Customer Discounts & Promotions</label>
+                        <input type="number" class="form-control" id="customerItemDiscountsPromos" placeholder="Enter Item Discounts and Promotions">
+                    </div>
+                    <div class="form-group">
+                        <label for="customerItemSubtotal">Customer Subtotal</label>
+                        <input type="number" class="form-control" id="customerItemSubtotal" placeholder="Customer Item Subtotal">
+                    </div>
+                </div>
+                <div class="image-section" id="imageSection${itemId}">
+                    <button type="button" onclick="addImage(${itemId})" class="btn btn-secondary">Add Image</button>
+                </div>
+            `;
+            itemSection.appendChild(itemDiv);
+            itemId++;
+        }
+
+        function addImage(itemId) {
+            const imageSection = document.getElementById('imageSection' + itemId);
+            const imageDiv = document.createElement('div');
+            imageDiv.className = 'image-section';
+            imageDiv.innerHTML = `
+                <div class="form-group">
+                    <label for="imageUrl${itemId}">Image URL</label>
+                    <input type="url" class="form-control" id="imageUrl${itemId}" placeholder="Enter Image URL">
+                </div>
+                <div class="form-group">
+                    <label for="printArea${itemId}">Image Description</label>
+                    <input type="text" class="form-control" id="printArea${itemId}" placeholder="Enter Image Print Area">
+                </div>
+                <div class="form-group">
+                    <label for="printLocation${itemId}">Print Location</label>
+                    <input type="text" class="form-control" id="printLocation${itemId}" placeholder="Print Location">
+                </div>
+                <div class="form-group">
+                    <label for="thumbnailUrl${itemId}">Image URL</label>
+                    <input type="url" class="form-control" id="thumbnailUrl${itemId}" placeholder="Enter Image Thumbnail URL">
+                </div>
+            `;
+            imageSection.appendChild(imageDiv);
+        }
+    </script>
+</body>
+</html>
