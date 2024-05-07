@@ -333,10 +333,15 @@
     `;
     attributesContainer.appendChild(attributeDiv);
 }
-
 function removeAttribute(button) {
-    button.closest('.input-group').remove();  // Remove the attribute input group
+    // This function will remove the closest input-group div relative to the button pressed.
+    if (button.closest('.input-group')) {
+        button.closest('.input-group').remove();
+    } else {
+        console.error('Remove button is not within an input-group');
+    }
 }
+
     </script>
 </body>
 </html>
