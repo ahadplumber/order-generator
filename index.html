@@ -257,6 +257,13 @@
                     <label for="clientAttributes${itemId}">Client Attributes</label>
                     <textarea class="form-control" id="clientAttributes${itemId}" placeholder="Client Attributes"></textarea>
                 </div>
+                <div class="form-group">
+            <label>Product Attributes</label>
+            <div id="attributesContainer${itemId}">
+                <!-- Container for adding attributes, initialized with one set of fields -->
+            </div>
+            <button type="button" class="btn btn-sm btn-primary" onclick="addAttribute(${itemId})">Add Attribute</button>
+        </div>
                 <div class="section">
                     <h4>Item Prices</h4>
                     <div class="form-group">
@@ -283,13 +290,6 @@
                 <div class="image-section" id="imageSection${itemId}">
                     <button type="button" onclick="addImage(${itemId})" class="btn btn-secondary">Add Image</button>
                 </div>
-                <div class="form-group">
-            <label>Product Attributes</label>
-            <div id="attributesContainer${itemId}">
-                <!-- Container for adding attributes, initialized with one set of fields -->
-            </div>
-            <button type="button" class="btn btn-sm btn-primary" onclick="addAttribute(${itemId})">Add Attribute</button>
-        </div>
             `;
             itemSection.appendChild(itemDiv);
             addAttribute(itemId);
