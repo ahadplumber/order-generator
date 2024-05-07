@@ -169,7 +169,7 @@
             </div>
             <div class="section">
                 <h4>Billing Info</h4>
-                 <div class="form-group">
+                <div class="form-group">
                     <label for="billingFullName">Full Name</label>
                     <input type="text" class="form-control" id="txnbillingFullName" placeholder="Full Name">
                 </div>
@@ -223,6 +223,7 @@
             const itemSection = document.getElementById('itemSection');
             const itemDiv = document.createElement('div');
             itemDiv.className = 'section';
+            itemDiv.setAttribute('id', `item${itemId}`);
             itemDiv.innerHTML = `
                 <div class="form-group">
                     <label for="sku${itemId}">SKU</label>
@@ -278,11 +279,20 @@
                         <label for="ItemSubtotal">Item Subtotal</label>
                         <input type="number" class="form-control" id="ItemSubtotal" placeholder="Enter Item Subtotal">
                     </div>
+                </div>
                 <div class="image-section" id="imageSection${itemId}">
                     <button type="button" onclick="addImage(${itemId})" class="btn btn-secondary">Add Image</button>
                 </div>
+                <div class="form-group">
+            <label>Product Attributes</label>
+            <div id="attributesContainer${itemId}">
+                <!-- Container for adding attributes, initialized with one set of fields -->
+            </div>
+            <button type="button" class="btn btn-sm btn-primary" onclick="addAttribute(${itemId})">Add Attribute</button>
+        </div>
             `;
             itemSection.appendChild(itemDiv);
+            addAttribute(itemId);
             itemId++;
         }
 
@@ -310,6 +320,23 @@
             `;
             imageSection.appendChild(imageDiv);
         }
+        function addAttribute(itemId) {
+    const attributesContainer = document.getElementById(`attributesContainer${itemId}`);
+    const attributeDiv = document.createElement('div');
+    attributeDiv.className = 'input-group mb-3';
+    attributeDiv.innerHTML = `
+        <input type="text" class="form-control" placeholder="Attribute Name" name="attributeName${itemId}">
+        <input type="text" class="form-control" placeholder="Attribute Value" name="attributeValue${itemId}">
+        <div class="input-group-append">
+            <button class="btn btn-danger" type="button" onclick="removeAttribute(this)">Remove</button>
+        </div>
+    `;
+    attributesContainer.appendChild(attributeDiv);
+}
+
+function removeAttribute(button) {
+    button.closest('.input-group').remove();  // Remove the attribute input group
+}
     </script>
 </body>
 </html>
